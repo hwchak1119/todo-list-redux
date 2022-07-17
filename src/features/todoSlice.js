@@ -11,9 +11,18 @@ const todoSlice = createSlice({
     saveTodo: (state, action) => {
       state.todoList.push(action.payload);
     },
+    setCheck: (state, action) => {
+      state.todoList.forEach((item) => {
+        if (action.payload === item.id) {
+          item.done = !item.done;
+        }
+      });
+    },
   },
 });
 
-export const { saveTodo } = todoSlice.actions;
+export const { saveTodo, setCheck } = todoSlice.actions;
+
+export const selectTodoList = (state) => state.todos.todoList;
 
 export default todoSlice.reducer;

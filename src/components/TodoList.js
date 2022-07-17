@@ -1,26 +1,20 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import { Box, VStack } from "@chakra-ui/react";
 
-const todoList = [
-  {
-    item: "angry",
-    done: false,
-    id: 14233,
-  },
-  {
-    item: "man",
-    done: false,
-    id: 24533,
-  },
-];
+import { useSelector } from "react-redux";
+import { selectTodoList } from "../features/todoSlice";
 
 function TodoList() {
+  const todoList = useSelector(selectTodoList);
   return (
-    <div>
-      {todoList.map((item) => (
-        <TodoItem name={item.item} done={item.done} id={item.id} />
-      ))}
-    </div>
+    <Box p='3' borderWidth='1px' borderRadius='lg'>
+      <VStack align='stretch'>
+        {todoList.map((item) => (
+          <TodoItem name={item.item} done={item.done} id={item.id} />
+        ))}
+      </VStack>
+    </Box>
   );
 }
 
