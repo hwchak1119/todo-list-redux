@@ -45,7 +45,7 @@ function TodoModal() {
       <Button rightIcon={<AddIcon />} colorScheme='blue' onClick={onOpen}>
         Add
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create new task</ModalHeader>
