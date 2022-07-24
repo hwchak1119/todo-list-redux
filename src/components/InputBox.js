@@ -1,35 +1,36 @@
-import React, { useState } from "react";
-import { Flex, Input, Button } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
-import { saveTodo } from "../features/todoSlice";
+import React from "react";
+import {
+  VStack,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+} from "@chakra-ui/react";
 
-function InputBox() {
-  const [input, setInput] = useState("");
-  const dispatch = useDispatch();
-
-  const addTodo = () => {
-    dispatch(
-      saveTodo({
-        item: input,
-        done: false,
-        id: Date.now(),
-      })
-    );
-  };
-
+function InputBox({ handleInputChange, handleStatusChange }) {
   return (
-    <Flex>
-      <Input
-        variant='outline'
-        placeholder='Add new task'
-        onChange={(e) => setInput(e.target.value)}
-        mr='12px'
-      />
-      <Button rightIcon={<AddIcon />} colorScheme='blue' onClick={addTodo}>
-        Add
-      </Button>
-    </Flex>
+    <VStack spacing={4} align='stretch'>
+      <FormControl mt={2}>
+        <FormLabel>Task Name</FormLabel>
+        <Input
+          variant='outline'
+          placeholder='Add new task'
+          onChange={(e) => handleInputChange(e.target.value)}
+          mr='12px'
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Status</FormLabel>
+        <Select
+          placeholder='None'
+          onChange={(e) => handleStatusChange(e.target.value)}
+        >
+          <option value='incomplete'>Incomplete</option>
+          <option value='in_progress'>In Progress</option>
+          <option value='done'>Done</option>
+        </Select>
+      </FormControl>
+    </VStack>
   );
 }
 
