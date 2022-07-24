@@ -26,7 +26,7 @@ function InputBox({ handleInputChange, handleStatusChange }) {
           onChange={(e) => handleStatusChange(e.target.value)}
         >
           <option value='incomplete'>Incomplete</option>
-          <option value='in_progress'>In Progress</option>
+          <option value='in progress'>In Progress</option>
           <option value='done'>Done</option>
         </Select>
       </FormControl>

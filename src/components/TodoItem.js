@@ -1,15 +1,29 @@
 import React from "react";
-import { Box, Flex, Checkbox } from "@chakra-ui/react";
+import { Box, Flex, Checkbox, Badge, Text } from "@chakra-ui/react";
 
 import { useDispatch } from "react-redux";
 import { setCheck } from "../features/todoSlice";
 
-function TodoItem({ name, done, id }) {
+function TodoItem({ name, status, done, id }) {
   const dispatch = useDispatch();
 
   const handleCheck = () => {
     dispatch(setCheck(id));
   };
+
+  const statusColor = (status) => {
+    if (status === "done") {
+      return "green";
+    }
+    if (status === "in progress") {
+      return "blue";
+    }
+    if (status === "incomplete") {
+      return "red";
+    }
+  };
+
+  console.log(status);
 
   return (
     <Box
@@ -21,8 +35,13 @@ function TodoItem({ name, done, id }) {
     >
       <Flex>
         <Checkbox size='lg' spacing='16px' isChecked={done}>
-          {name}
+          <Text as='b'>{name}</Text>
         </Checkbox>
+        <Box>
+          <Badge ml={4} colorScheme={statusColor(status)}>
+            {status}
+          </Badge>
+        </Box>
       </Flex>
     </Box>
   );

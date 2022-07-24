@@ -11,7 +11,13 @@ function TodoList() {
     <Box p='3' borderWidth='1px' borderRadius='lg'>
       <VStack align='stretch'>
         {todoList.map((item) => (
-          <TodoItem name={item.item} done={item.done} id={item.id} />
+          <TodoItem
+            name={item.item}
+            status={item.status}
+            done={item.done}
+            id={item.id}
+            key={item.id}
+          />
         ))}
       </VStack>
     </Box>
